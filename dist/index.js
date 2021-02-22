@@ -1,16 +1,28 @@
+"use strict";
+
+var isString = function isString(val) {
+  return typeof val === 'string';
+};
+
+var isObject = function isObject(val) {
+  return Object.prototype.toString.call(val) === '[object Object]';
+};
+
 if (!Array.prototype.get) {
-  Array.prototype.get = function (property, keyName = '') {
+  Array.prototype.get = function (property) {
+    var keyName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
     // console.log(property, keyName)
     if (property && isString(property)) {
       if (!this.length) {
         return undefined;
       }
 
-      const sampleItem = this[0];
+      var sampleItem = this[0];
 
       if (isObject(sampleItem)) {
         // object item
-        const keys = Object.keys(sampleItem);
+        var keys = Object.keys(sampleItem);
 
         if (!keyName) {
           // keyName not set, auto detect it
@@ -28,7 +40,9 @@ if (!Array.prototype.get) {
           return undefined;
         }
 
-        return this.find(item => item[keyName] === property);
+        return this.find(function (item) {
+          return item[keyName] === property;
+        });
       } else {
         // value item
         throw new Error('item must be object when invoke "get"');
@@ -49,8 +63,8 @@ if (!Array.prototype.forEachRight) {
       throw new Error('callbackfn should be function when invoke "forEachRight"');
     }
 
-    for (let index = this.length - 1; index >= 0; index--) {
-      const element = this[index];
+    for (var index = this.length - 1; index >= 0; index--) {
+      var element = this[index];
       callbackfn(element, index);
     }
   };

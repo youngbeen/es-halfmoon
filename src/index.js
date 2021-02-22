@@ -1,4 +1,12 @@
 
+const isString = (val) => {
+  return typeof (val) === 'string'
+}
+
+const isObject = (val) => {
+  return Object.prototype.toString.call(val) === '[object Object]'
+}
+
 if (!Array.prototype.get) {
   Array.prototype.get = function (property, keyName = '') {
     // console.log(property, keyName)

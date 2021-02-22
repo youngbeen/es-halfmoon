@@ -1,6 +1,6 @@
 {
   "name": "@youngbeen/es-halfmoon",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "`ES-halfmoon` is about to provide some prototype methods for ES not covered yet",
   "main": "dist/index.js",
   "scripts": {
